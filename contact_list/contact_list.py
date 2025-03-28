@@ -5,6 +5,7 @@ __version__ = "1.0.0"
 __credits__ = ""
 
 from PySide6.QtWidgets import  QMainWindow, QLineEdit, QPushButton, QTableWidget, QLabel, QVBoxLayout, QWidget, QTableWidgetItem
+from PySide6.QtCore import Slot
 
 class ContactList(QMainWindow):
     """Represents a window that provides the UI to manage contacts."""
