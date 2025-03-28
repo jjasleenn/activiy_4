@@ -4,7 +4,8 @@ __author__ = "Jasleen kaur"
 __version__ = "1.0.0"
 __credits__ = ""
 
-from PySide6.QtWidgets import  QMainWindow, QLineEdit, QPushButton, QTableWidget, QLabel, QVBoxLayout, QWidget, QTableWidgetItem
+from PySide6.QtWidgets import  QMainWindow, QLineEdit, QPushButton, QTableWidget, QLabel, QVBoxLayout, QWidget, QTableWidgetItem, QMessageBox
+
 from PySide6.QtCore import Slot
 
 class ContactList(QMainWindow):
@@ -74,4 +75,24 @@ class ContactList(QMainWindow):
             self.phone_input.clear()
         else:
             self.status_label.setText("Please enter a contact name.")
+
+    @Slot()
+    def __on_remove_contact(self):
+        """Handles the event when the Remove Contact button is clicked."""
+        selected_row = self.contact_table.currentRow()
+        
+        if selected_row >= 0:
+            reply = QMessageBox.question(
+                self, 
+                "Remove Contact", 
+                "Are you sure you want to remove the selected contact?",
+                QMessageBox.Yes | QMessageBox.No,
+                QMessageBox.No
+            )
+            
+            if reply == QMessageBox.Yes:
+                self.contact_table.removeRow(selected_row)
+                self.status_label.setText("Contact removed.")
+        else:
+            self.status_label.setText("Please select a row to be removed.")
 
