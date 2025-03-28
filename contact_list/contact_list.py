@@ -18,7 +18,8 @@ class ContactList(QMainWindow):
         self.__initialize_widgets()   
 
         self.add_button.clicked.connect(self.__on_add_contact)
-   
+        self.remove_button.clicked.connect(self.__on_remove_contact)   
+
 
     def __initialize_widgets(self):
         """Initializes the widgets on this Window.
